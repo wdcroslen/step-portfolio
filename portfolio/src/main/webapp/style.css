@@ -7,3 +7,10 @@
 #greeting-container {
   margin-top: 20px;
 }
+
+#fact-container {
+  color: darkblue;
+  margin-top: 20px;
+}
+
+body {background-color: lightpink;}
