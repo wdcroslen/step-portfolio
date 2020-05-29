@@ -13,4 +13,24 @@
   margin-top: 20px;
 }
 
+img {
+   height: 50%;
+  width: 50%;
+}
+.image-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-thumbnails img {
+  margin: 10px;
+  max-height: 200px;
+  max-width: 200px;
+}
+#meme-container img {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 body {background-color: lightpink;}
