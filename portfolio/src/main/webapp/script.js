@@ -28,21 +28,6 @@ function addRandomGreeting() {
 }
 
 
-
-function changeImage() {
-            const image = document.getElementById('meme-container');
-            image.src = "myImages/meme/meme-1.jpg";
-            // console.log(image.src);
-            // if (image.src  === "myImages/meme/meme-1" ){
-            //     image.src = "myImages/meme/meme-2.jpg";
-            // }
-            // else {
-            //     image.src = "myImages/meme/meme-1.jpg";
-            // }
-}
-
-
-
 function addRandomMyFact() {
   const facts =
       ['I love cinammon Toast Crunch!', 'I like to play piano in my free time!', 'I want to travel  the world!'];

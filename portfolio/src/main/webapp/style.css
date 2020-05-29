@@ -30,7 +30,11 @@ img {
 }
 #meme-container img {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+#meme-1 img {
+  margin-right: 20px;
 }
 
 body {background-color: lightpink;}
