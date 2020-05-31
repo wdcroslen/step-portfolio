@@ -13,6 +13,10 @@
   margin-top: 20px;
 }
 
+p {
+  line-height: 1.8;
+}
+
 #h1{
     background-color: blue;
 }
