@@ -7,3 +7,51 @@
 #greeting-container {
   margin-top: 20px;
 }
+
+#fact-container {
+  color: darkblue;
+  margin-top: 20px;
+}
+
+p {
+  line-height: 1.8;
+}
+
+#h1{
+    background-color: blue;
+}
+
+img {
+   height: 50%;
+  width: 50%;
+}
+
+#meme-container img {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+ 
+
+.image-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-thumbnails img {
+  margin: 10px;
+  max-height: 1200px;
+  max-width: 1200px;
+}
+
+.image-thumbnails img:hover {
+  border: thick solid black;
+}
+
+
+
+#meme-1 img {
+  margin-right: 20px;
+}
+
+body {background-color: lightpink;}

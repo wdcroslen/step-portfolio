@@ -26,3 +26,16 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+
+function addRandomMyFact() {
+  const facts =
+      ['I love cinammon Toast Crunch!', 'I like to play piano in my free time!', 'I want to travel  the world!'];
+
+  // Pick a random greeting.
+  const fax = facts[Math.floor(Math.random() * facts.length)];
+
+  // Add it to the page.
+  const factContainer = document.getElementById('fact-container');
+  factContainer.innerText = fax;
+}
