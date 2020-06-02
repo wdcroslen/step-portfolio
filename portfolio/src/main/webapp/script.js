@@ -49,16 +49,20 @@ function fetchMessage() {
 }
 
 function fetchJSON() {
-    console.log("JSON FETCHING");
-    console.log("MESSAGES");
-  fetch('/data').then(response => response.json()).then((message) => {
-       
-    const listElement = document.getElementById('JSON-container');
+    fetch('/data').then(response => response.json()).then((words) => {
+ const listElement = document.getElementById('JSON-container');
     listElement.innerHTML = '';
-    var i =0;
-    for (i = 0; i<message.size;i++){
-        listElement.appendChild(
-        createListElement("" + i + " Element: " + message.get(i)));
-    }
+    listElement.appendChild(
+        createListElement('First Element: ' + words.first));
+    listElement.appendChild(
+        createListElement('Second Element: ' + words.second));
+    listElement.appendChild(
+        createListElement('Third Element: ' + words.third));
   });
+
+}
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }

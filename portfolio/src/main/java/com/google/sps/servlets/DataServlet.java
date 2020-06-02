@@ -46,7 +46,7 @@ public class DataServlet extends HttpServlet {
     messages.add("Gentlemen");
 
     // Convert the ArrayList to JSON
-    String json = convertToJsonUsingGson(messages);
+    String json = convertToJson(messages);
 
     // Send the JSON as the response
     response.setContentType("application/json;");
@@ -67,20 +67,17 @@ public class DataServlet extends HttpServlet {
     return json;
   }
   
-//   private String convertToJson(ArrayList messages) {
-//     String json = "{";
-//     json += "\"startTime\": ";
-//     json += "\"" + serverStats.getStartTime() + "\"";
-//     json += ", ";
-//     json += "\"currentTime\": ";
-//     json += "\"" + serverStats.getCurrentTime() + "\"";
-//     json += ", ";
-//     json += "\"maxMemory\": ";
-//     json += serverStats.getMaxMemory();
-//     json += ", ";
-//     json += "\"usedMemory\": ";
-//     json += serverStats.getUsedMemory();
-//     json += "}";
-//     return json;
-//   }
+  private String convertToJson(ArrayList messages) {
+    String json = "{";
+    json += "\"first\": ";
+    json += "\"" + messages.get(0) + "\"";
+    json += ", ";
+    json += "\"second\": ";
+    json += "\"" + messages.get(1) + "\"";
+    json += ", ";
+    json += "\"third\": ";
+    json += "\"" + messages.get(2) + "\"";
+    json += "}";
+    return json;
+  }
 }
