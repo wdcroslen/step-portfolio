@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Comments</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+
+
+
+ <body onload="getComment()">
+    <h1>Comments</h1>
+
+    <!-- <form action="/text" method="POST">
+      <p>Enter a comment!</p>
+      <label for="comment">Text:</label><br>
+      <input type="text" id="comment" name="comment" value="ex"><br>
+
+      <input type="submit" />
+    </form> -->
+    
+    <ul id="history"></ul>
+    <h1 id="comment"></h1>
+
+    <form action="/text" method="POST">
+
+      <p>Enter a comma-separated list of words:</p>
+      <textarea id = "text-input" name="text-input">one, two, threee</textarea>
+
+      <input type="submit" />
+    </form>
+
+  </body>
+</html>

@@ -15,6 +15,28 @@
 /**
  * Adds a random greeting to the page.
  */
+ function getComment() {
+    console.log("comment");
+    fetch('/text').then(response => response.text()).then((bird) => {
+    document.getElementById('comment').innerText = bird;
+    });
+}
+function commentUpdate(){
+    fetch('/text').then(response => response.json()).then((words) => {
+    const commentEL = document.getElementById('comment');
+    commentEL.innerHTML = '';
+    
+    // commentEL=appendChild(
+    //     createListElement('First Element: ' + words.first));
+    // commentEL.appendChild(
+    //     createListElement('Second Element: ' + words.second));
+    // commentEL.appendChild(
+    //     createListElement('Third Element: ' + words.third));
+    document.getElementById('word-container').innerText = word;
+  });
+  
+}
+
 function addRandomGreeting() {
   const greetings =
       ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
@@ -59,6 +81,7 @@ function fetchJSON() {
     listElement.appendChild(
         createListElement('Third Element: ' + words.third));
   });
+
 
 }
 function createListElement(text) {
