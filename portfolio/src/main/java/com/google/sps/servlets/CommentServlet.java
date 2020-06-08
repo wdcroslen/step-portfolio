@@ -24,6 +24,7 @@ import java.io.IOException;
 import com.google.gson.Gson;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,20 +34,39 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/text")
 public final class CommentServlet extends HttpServlet {
 
-  public ArrayList<String> messages;
+  public List<String> messages;
 
-  @Override
-  public void init(){
-      messages = new ArrayList<>();
-      messages.add("Potato");
-  }
+//   @Override
+//   public void init(){
+//     //   messages = new ArrayList<>();
+//     //   messages.add("Potato");
+//     //   messages.add("hot");
+      
+//   }
 
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json");
-    String json = new Gson().toJson(messages);
-    response.getWriter().println(json);
+    Query query = new Query("Comment"); //.addSort("timestamp", SortDirection.DESCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+    List<String> comments = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+        long id = entity.getKey().getId();
+        String text = (String) entity.getProperty("text");
+        long timestamp = (long) entity.getProperty("timestamp");
+
+      comments.add(text);
+    }
+
+    Gson gson = new Gson();
+
+    response.setContentType("application/json;");
+    response.getWriter().println(gson.toJson(comments));
+
+    // response.setContentType("application/json");
+    // String json = new Gson().toJson(messages);
+    // response.getWriter().println(json);
   }
 
   @Override
@@ -61,13 +81,6 @@ public final class CommentServlet extends HttpServlet {
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
-
-    messages.add(text);
-     
-     // Respond with the result.
-    response.setContentType("application/json");
-    String json = new Gson().toJson(text);
-    response.getWriter().println(json);
     response.sendRedirect("/comment.html");
 
   }
@@ -83,7 +96,12 @@ public final class CommentServlet extends HttpServlet {
     }
     return value;
   }
-
+    private String convertToJsonUsingGson(ArrayList messages) {
+    Gson gson = new Gson();
+    String json = gson.toJson(messages);
+    return json;
+  }
+  
   private String convertToJson(ArrayList messages) {
     String json = "{";
     json += "\"first\": ";

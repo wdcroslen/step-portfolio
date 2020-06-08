@@ -15,26 +15,14 @@
 /**
  * Adds a random greeting to the page.
  */
- function getComment() {
-    console.log("comment");
-    fetch('/text').then(response => response.text()).then((bird) => {
-    document.getElementById('comment').innerText = bird;
-    });
-}
-function commentUpdate(){
-    fetch('/text').then(response => response.json()).then((words) => {
-    const commentEL = document.getElementById('comment');
-    commentEL.innerHTML = '';
-    
-    // commentEL=appendChild(
-    //     createListElement('First Element: ' + words.first));
-    // commentEL.appendChild(
-    //     createListElement('Second Element: ' + words.second));
-    // commentEL.appendChild(
-    //     createListElement('Third Element: ' + words.third));
-    document.getElementById('word-container').innerText = word;
+
+function loadTasks() {
+  fetch('/text?task-list=3').then(response => response.json()).then((tasks) => {
+    const taskListElement = document.getElementById('task-list');
+    tasks.forEach((task) => {
+      taskListElement.appendChild(createListElement(task));
+    })
   });
-  
 }
 
 function addRandomGreeting() {

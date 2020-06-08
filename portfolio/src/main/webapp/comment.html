@@ -9,27 +9,36 @@
 
 
 
- <body onload="getComment()">
-    <h1>Comments</h1>
-
-    <!-- <form action="/text" method="POST">
-      <p>Enter a comment!</p>
-      <label for="comment">Text:</label><br>
-      <input type="text" id="comment" name="comment" value="ex"><br>
-
-      <input type="submit" />
-    </form> -->
-    
-    <ul id="history"></ul>
-    <h1 id="comment"></h1>
+   <body onload="loadTasks()">
+     <div id="content">
+      <h1>Comments</h1>
+      <ul id="comment"></ul>
+     </div>
+     <div id = "content">
 
     <form action="/text" method="POST">
 
       <p>Enter a comma-separated list of words:</p>
-      <textarea id = "text-input" name="text-input">one, two, threee</textarea>
+      <input type = "text" id = "text-input" name="text-input">
+      <br/><br/>
 
       <input type="submit" />
     </form>
 
+    <form action="/text" method="POST">
+
+      <p>Number of Comments You Would Like To Display:</p>
+      <input type="number" name="player-choice" min="1" max="10" onchange="loadTasks()">
+      <br/><br/>
+      <input type="submit" />
+    </form>
+    </div>
+
+  </body>
+  <body onload="loadTasks()">
+      <div id="content">
+        <hr/>
+        <ul id="task-list"></ul>
+      </div>
   </body>
 </html>
