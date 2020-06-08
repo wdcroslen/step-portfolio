@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Comments</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+
+
+
+   <body onload="loadTasks()">
+     <div id="content">
+      <h1>Comments</h1>
+      <ul id="comment"></ul>
+     </div>
+     <div id = "content">
+
+    <form action="/text" method="POST">
+
+      <p>Enter a comma-separated list of words:</p>
+      <input type = "text" id = "text-input" name="text-input">
+      <br/><br/>
+
+      <input type="submit" />
+    </form>
+
+    <form action="/text" method="POST">
+
+      <p>Number of Comments You Would Like To Display:</p>
+      <input type="number" name="player-choice" min="1" max="10" onchange="loadTasks()">
+      <br/><br/>
+      <input type="submit" />
+    </form>
+    </div>
+
+  </body>
+  <body onload="loadTasks()">
+      <div id="content">
+        <hr/>
+        <ul id="task-list"></ul>
+      </div>
+  </body>
+</html>

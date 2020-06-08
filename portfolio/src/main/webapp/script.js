@@ -15,6 +15,16 @@
 /**
  * Adds a random greeting to the page.
  */
+
+function loadTasks() {
+  fetch('/text?task-list=3').then(response => response.json()).then((tasks) => {
+    const taskListElement = document.getElementById('task-list');
+    tasks.forEach((task) => {
+      taskListElement.appendChild(createListElement(task));
+    })
+  });
+}
+
 function addRandomGreeting() {
   const greetings =
       ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
@@ -38,4 +48,32 @@ function addRandomMyFact() {
   // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fax;
+}
+
+
+function fetchMessage() {
+    console.log("fetch");
+    fetch('/data').then(response => response.text()).then((word) => {
+    document.getElementById('word-container').innerText = word;
+  });
+}
+
+function fetchJSON() {
+    fetch('/data').then(response => response.json()).then((words) => {
+ const listElement = document.getElementById('JSON-container');
+    listElement.innerHTML = '';
+    listElement.appendChild(
+        createListElement('First Element: ' + words.first));
+    listElement.appendChild(
+        createListElement('Second Element: ' + words.second));
+    listElement.appendChild(
+        createListElement('Third Element: ' + words.third));
+  });
+
+
+}
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
