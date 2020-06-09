@@ -3,10 +3,19 @@
   margin-right: auto;
   width: 650px;
 }
+#login {
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  background-color: lightblue;
+}
 
 #greeting-container {
   margin-top: 20px;
 }
+
+p.solid {border-style: solid;}
+h1.solid {border-style: solid;}
 
 #fact-container {
   color: darkblue;

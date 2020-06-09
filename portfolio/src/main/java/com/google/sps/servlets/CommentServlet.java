@@ -20,10 +20,10 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import java.io.IOException;
 import com.google.gson.Gson;
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,16 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/text")
 public final class CommentServlet extends HttpServlet {
 
-  public List<String> messages;
-
-//   @Override
-//   public void init(){
-//     //   messages = new ArrayList<>();
-//     //   messages.add("Potato");
-//     //   messages.add("hot");
-      
-//   }
-
+  private List<String> messages;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -55,26 +46,20 @@ public final class CommentServlet extends HttpServlet {
         long id = entity.getKey().getId();
         String text = (String) entity.getProperty("text");
         long timestamp = (long) entity.getProperty("timestamp");
-
-      comments.add(text);
+        comments.add(text);
     }
-
     Gson gson = new Gson();
-
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
-
-    // response.setContentType("application/json");
-    // String json = new Gson().toJson(messages);
-    // response.getWriter().println(json);
   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String text = getParameter(request, "text-input", "oof");
-    long timestamp = System.currentTimeMillis();
+    String text = getParameter(request, "text-input", "");
     
+    long timestamp = System.currentTimeMillis();
+    //FIXME : check if text input = 3 and  return
     Entity taskEntity = new Entity("Comment");
     taskEntity.setProperty("text", text);
     taskEntity.setProperty("timestamp", timestamp);
@@ -82,7 +67,6 @@ public final class CommentServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
     response.sendRedirect("/comment.html");
-
   }
 
   /**
@@ -95,24 +79,5 @@ public final class CommentServlet extends HttpServlet {
       return defaultValue;
     }
     return value;
-  }
-    private String convertToJsonUsingGson(ArrayList messages) {
-    Gson gson = new Gson();
-    String json = gson.toJson(messages);
-    return json;
-  }
-  
-  private String convertToJson(ArrayList messages) {
-    String json = "{";
-    json += "\"first\": ";
-    json += "\"" + messages.get(0) + "\"";
-    json += ", ";
-    json += "\"second\": ";
-    json += "\"" + messages.get(1) + "\"";
-    json += ", ";
-    json += "\"third\": ";
-    json += "\"" + messages.get(2) + "\"";
-    json += "}";
-    return json;
   }
 }
