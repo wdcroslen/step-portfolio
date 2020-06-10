@@ -10,6 +10,7 @@
 
 
    <body onload="loadTasks()">
+
      <div id="content">
       <h1>Comments</h1>
       <ul id="comment"></ul>
@@ -17,28 +18,29 @@
      <div id = "content">
 
     <form action="/text" method="POST">
-
-      <p>Enter a comma-separated list of words:</p>
+      <p>Enter a comment:</p>
       <input type = "text" id = "text-input" name="text-input">
       <br/><br/>
-
       <input type="submit" />
     </form>
 
     <form action="/text" method="POST">
-
       <p>Number of Comments You Would Like To Display:</p>
       <input type="number" name="player-choice" min="1" max="10" onchange="loadTasks()">
       <br/><br/>
-      <input type="submit" />
     </form>
+    <button id = 'delete' onclick="deleteComments()">Delete</button>
     </div>
-
+    
   </body>
+
   <body onload="loadTasks()">
       <div id="content">
         <hr/>
         <ul id="task-list"></ul>
       </div>
   </body>
+
+
+
 </html>
