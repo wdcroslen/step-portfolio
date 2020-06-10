@@ -25,16 +25,18 @@
       <div id="fact-container"></div>
       <p>Click <a href="aboutMe.html">here</a> to learn more about me!</p>
       <!-- button to view data servlet-->
-      <a href="login"> <button>Log in</button/></a>
+      <a href="login"> <button onclick = "unHideComment()">Log in</button/></a>
       <button onclick="fetchMessage()">Fetch Message</button>
+      <button onclick="unHideComment()">Unhide</button>
       <div id="word-container"></div>
     </div>
     <div id = "content">
       <button onclick="fetchJSON()">Fetch JSON</button>
       <div id="JSON-container"></div>
     </div>
-    <div id = "content">
+    <div id = "hidden">
         <a href="comment.html"> <button>View Comments</button/></a>
+        <div id ="view-comments"></div>
     </div>
   </body>
 

@@ -12,9 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
+
+//hides and unhides comment button if user is logged in
+function unHideComment() {
+  const x = document.getElementById("hidden");
+  if (x.style.display === "none") {
+    x.style.display = "inline-block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+
+function login(){
+    fetch('/login').then(response => response.json()).then((login) => {
+        const log = document.getElementById('login');
+        log.innerText = login
+  });
+}
+
+
+function deleteComments(){
+    fetch('/delete-data').then(response => response.json()).then((tasks) => {
+    const taskListElement = document.getElementById('task-list');
+    tasks.forEach((task) => {
+      taskListElement.remove();
+    })
+  });
+//   loadTasks();
+
+}
 
 function loadTasks() {
   fetch('/text?task-list=3').then(response => response.json()).then((tasks) => {

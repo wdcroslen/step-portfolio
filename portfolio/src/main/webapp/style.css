@@ -3,6 +3,12 @@
   margin-right: auto;
   width: 650px;
 }
+#hidden {
+  margin-left: auto;
+  margin-right: auto;
+  width: 650px;
+  display: none;
+}
 #login {
   margin-left: auto;
   margin-right: auto;

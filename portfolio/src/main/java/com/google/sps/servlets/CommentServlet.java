@@ -44,9 +44,11 @@ public final class CommentServlet extends HttpServlet {
     List<String> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
         long id = entity.getKey().getId();
+        String nickname = (String) entity.getProperty("nickname");
+        String email = (String) entity.getProperty("email");
         String text = (String) entity.getProperty("text");
         long timestamp = (long) entity.getProperty("timestamp");
-        comments.add(text);
+        comments.add("Comment: " + text + "  |  Username: " + nickname + "  |  Email: "+email);
     }
     Gson gson = new Gson();
     response.setContentType("application/json;");
@@ -57,13 +59,15 @@ public final class CommentServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String text = getParameter(request, "text-input", "");
-    
+    String nickname = LoginServlet.getName();
+    String email = LoginServlet.getEmail();
     long timestamp = System.currentTimeMillis();
     //FIXME : check if text input = 3 and  return
     Entity taskEntity = new Entity("Comment");
     taskEntity.setProperty("text", text);
     taskEntity.setProperty("timestamp", timestamp);
-
+    taskEntity.setProperty("nickname",nickname);
+    taskEntity.setProperty("email",email);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
     response.sendRedirect("/comment.html");
