@@ -13,6 +13,39 @@
 // limitations under the License.
 
 
+
+// Load the Visualization API and the corechart package.
+google.charts.load('current', {'packages':['corechart']});
+// Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(drawChart);
+
+//Adds data and draws chart
+function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Movie');
+        data.addColumn('number', 'Times Watched This Week');
+        data.addRows([
+          ['Shrek', 3],
+          ['Onions', 1],
+          ['Shrek 2', 1],
+          ['Spider Man Homecoming', 1],
+          ['Avengers Infinity War', 2]
+        ]);
+
+        // Set chart options
+        var options = {'title':'Movies I watched this week',
+                       'width':800,
+                       'height':500};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+}
+
+
+
 //hides and unhides comment button if user is logged in
 function unHideComment() {
   const x = document.getElementById("hidden");
@@ -39,7 +72,6 @@ function deleteComments(){
       taskListElement.remove();
     })
   });
-//   loadTasks();
 
 }
 
