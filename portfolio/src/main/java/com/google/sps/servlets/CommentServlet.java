@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,12 +37,14 @@ public final class CommentServlet extends HttpServlet {
 
   private List<String> messages;
 
+ static Map<String, Integer> commentsByPerson = new LinkedHashMap<>();
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Comment"); //.addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query("Comment");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    List<String> comments = new ArrayList<>();
+    List<String> comments = new ArrayList<String>();
     for (Entity entity : results.asIterable()) {
         long id = entity.getKey().getId();
         String nickname = (String) entity.getProperty("nickname");
@@ -49,6 +52,15 @@ public final class CommentServlet extends HttpServlet {
         String text = (String) entity.getProperty("text");
         long timestamp = (long) entity.getProperty("timestamp");
         comments.add("Comment: " + text + "  |  Username: " + nickname + "  |  Email: "+email);
+        
+        if(commentsByPerson.containsKey(nickname)){
+             int temp = commentsByPerson.get(nickname);
+             commentsByPerson.put(nickname,temp+1);
+        }
+
+        else{
+            commentsByPerson.put(nickname,1);
+        }
     }
     Gson gson = new Gson();
     response.setContentType("application/json;");
@@ -62,7 +74,7 @@ public final class CommentServlet extends HttpServlet {
     String nickname = LoginServlet.getName();
     String email = LoginServlet.getEmail();
     long timestamp = System.currentTimeMillis();
-    //FIXME : check if text input = 3 and  return
+    
     Entity taskEntity = new Entity("Comment");
     taskEntity.setProperty("text", text);
     taskEntity.setProperty("timestamp", timestamp);
@@ -72,6 +84,8 @@ public final class CommentServlet extends HttpServlet {
     datastore.put(taskEntity);
     response.sendRedirect("/comment.html");
   }
+
+ 
 
   /**
    * @return the request parameter, or the default value if the parameter
