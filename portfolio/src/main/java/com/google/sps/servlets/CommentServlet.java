@@ -37,7 +37,7 @@ public final class CommentServlet extends HttpServlet {
 
   private List<String> messages;
 
-  public static LinkedHashMap<String, Integer> commentsByPerson = new LinkedHashMap<>();
+ static Map<String, Integer> commentsByPerson = new LinkedHashMap<>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
